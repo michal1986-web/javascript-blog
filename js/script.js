@@ -2,9 +2,7 @@
 
 function titleClickHandler(event){
     const clickedElement = this;
-    console.log('clickedElement (with plus): ' + clickedElement);
     console.log('Link was clicked!');
-    console.log(event);
 
     /* remove class 'active' from all article links  */
 
@@ -16,8 +14,7 @@ function titleClickHandler(event){
     /* add class 'active' to the clicked link */
 
     console.log('clickedElement:', clickedElement);
-    //const activeArticles = document.querySelectorAll('.titles a.active');
-    //activeArticle.classList.add('active');
+    clickedElement.classList.add('active');
     /* remove class 'active' from all articles */
 
     const activeArticles = document.querySelectorAll('.post.active');
