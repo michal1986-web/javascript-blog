@@ -1,32 +1,39 @@
 'use strict';
 
 function titleClickHandler(event){
-  console.log('Link was clicked!');
-  console.log(event);
+    const clickedElement = this;
+    console.log('clickedElement (with plus): ' + clickedElement);
+    console.log('Link was clicked!');
+    console.log(event);
 
-  /* remove class 'active' from all article links  */
-  const activeLinks = document.querySelectorAll('.titles a.active');
+    /* remove class 'active' from all article links  */
 
-  for(let activeLink of activeLinks){
+    const activeLinks = document.querySelectorAll('.titles a.active');
+
+    for(let activeLink of activeLinks){
     activeLink.classList.remove('active');
-  }
-  /* add class 'active' to the clicked link */ // zmień selektor .titles a.active na odpowiedni dla artykułów znajdujących się w naszym blogu
-  const activeArticles = document.querySelectorAll('.post');
+    }
+    /* add class 'active' to the clicked link */
 
-  for(let activeArticle of activeArticles){
+    console.log('clickedElement:', clickedElement);
+    //const activeArticles = document.querySelectorAll('.titles a.active');
+    //activeArticle.classList.add('active');
+    /* remove class 'active' from all articles */
+
+    const activeArticles = document.querySelectorAll('.post.active');
+
+    for(let activeArticle of activeArticles){
     activeArticle.classList.remove('active');
-  }
-  /* remove class 'active' from all articles */
+    }
+    /* get 'href' attribute from the clicked link */
 
-  /* get 'href' attribute from the clicked link */
+    /* find the correct article using the selector (value of 'href' attribute) */
 
-  /* find the correct article using the selector (value of 'href' attribute) */
-
-  /* add class 'active' to the correct article */
+    /* add class 'active' to the correct article */
 }
 
 const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
-  link.addEventListener('click', titleClickHandler);
+    link.addEventListener('click', titleClickHandler);
 }
