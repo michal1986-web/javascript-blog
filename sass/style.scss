@@ -4,6 +4,8 @@
 
 $color-light: #fff;
 $color-dark: #444;
+$color-background: #232323;
+$color-green: #177737;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -16,7 +18,7 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background: $color-background;
   font-family: $font-text;
   color: $color-dark;
   font-weight: 300;
@@ -41,6 +43,11 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+  color: $color-dark;
+}
+
 /* Layout */
 
 .wrapper {
@@ -60,8 +67,9 @@ body {
   background: $color-light;
   margin-right: 10px;
   padding: 40px;
-  border: 1px solid $color-dark;
-  border-radius: 5px;
+  border-radius: 10px;
+  position: relative;
+  min-height: 700px;
 }
 
 /* Logo */
@@ -72,6 +80,7 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  color: $color-green;
 }
 
 /* Lists */
@@ -80,8 +89,15 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  li {
+    padding-left: 5px;
+    &:hover {
+      border-left: 2px solid $color-green;
+    }
+  }
   .active {
     font-weight: bold;
+    margin-left: 25px;
   }
 }
 
@@ -102,9 +118,18 @@ body {
 /* Post */
 
 .post {
-  display: none;
+  opacity: 0;
+  z-index: 0;
+  transition: all .1s;
+  position: absolute;
+  padding-right: 20px;
+  p {
+    margin: 0 20px 0 0;
+  }
   &.active {
-    display: block;
+    opacity: 1;
+    z-index: 1;
+    transition: all .8s;
   }
 }
 
@@ -114,7 +139,66 @@ body {
 
 .post-tags {
   display: flex;
-  p {
-    margin: 0 10px 0 0;
+}
+
+/* Media */
+
+@media (max-width: 767px) {
+    
+  body {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .wrapper {
+      flex-direction: column;        
+  }
+
+  .sidebar, .posts {
+    padding: 20px;
+    min-height: 900px;
+    margin-top: 20px;
+  }
+  .sidebar {
+    min-height: 450px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  body {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .wrapper {
+      flex-direction: column;       
+  }
+
+  .posts, .sidebar {
+    padding: 20px;
+    min-height: 500px;
+    margin-top: 20px;
+  }
+  .sidebar {
+    min-height: 300px;
+    &:first-child {
+      min-height: 175px;
+    }
+  }
+  
+  .list {
+    li {
+      display: inline-block;
+      margin-right: 50px;
+      &:hover {
+        border: none;
+      }
+      .active {
+        font-weight: bold;
+        margin-left: 0;
+        border-bottom: 2px solid $color-green;
+      }
+    }
   }
 }
