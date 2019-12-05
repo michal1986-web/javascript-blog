@@ -41,7 +41,8 @@ function titleClickHandler(event){
 
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list';
 
 function generateTitleLinks(){
   //console.log('Generate TitleLinks was made!');
@@ -95,49 +96,46 @@ generateTitleLinks();
 
 /* Function Generate Tags */
 
-const optArticleTagsSelector = '.post-tags .list';
-
 function generateTags(){
-  console.log('Generate Tags was made!');
   /* find all articles */
-  const articles = document.querySelectorAll('article');
-  //console.log('Articles:', articles);
+  const articles = document.querySelectorAll(optArticleSelector);
+  //console.log('articles:', articles);
 
   /* START LOOP: for every article: */
   for(let article of articles) {
 
     /* find tags wrapper */
-    const titleList = article.querySelectorAll(optArticleTagsSelector);
-    //console.log('title list:', titleList); 
+    const titleList = article.querySelector(optArticleTagsSelector);
+    //console.log('titleList:', titleList);
 
     /* make html variable with empty string */
     let html = '';
+    //console.log('html:', html);
 
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-    //console.log('Articletags:', articleTags);
+    //console.log('articleTags:', articleTags);
 
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
-    //console.log('ArticletagsArray:', articleTagsArray);
+    //console.log('articleTagsArray:', articleTagsArray);
 
     /* START LOOP: for each tag */
     for(let tag of articleTagsArray) {
-      //console.log('tag:', tag);
 
       /* generate HTML of the link */
       const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
-      titleList.innerHTML = titleList.innerHTML + linkHTML;
-      //console.log('linkHTML:', titleList);
+      //console.log('linkHTML:', linkHTML);
 
       /* add generated code to html variable */
+      titleList.insertAdjacentHTML('beforeend', linkHTML);
+      console.log('titleList.insertAdjacentHTML:', titleList.insertAdjacentHTML);
       html = html + linkHTML;
-      //console.log('linkHTML:', html);
     /* END LOOP: for each tag */
     }
+
     /* insert HTML of all the links into the tags wrapper */
     titleList.innerHTML = html;
-    console.log('linkHTML:', titleList);
 
   /* END LOOP: for every article: */
   }
