@@ -85,12 +85,15 @@ a {
 }
 
 .list li:hover {
-  border-left: 2px solid #177737;
+  transform: scale(1.2);
+  margin-left: 15px;
+  display: inline-block;
+  border-bottom: 2px solid #177737;
 }
 
 .list .active {
   font-weight: bold;
-  margin-left: 25px;
+  margin-left: 20px;
 }
 
 .list-horizontal li {
