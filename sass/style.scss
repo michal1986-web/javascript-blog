@@ -96,7 +96,6 @@ a {
     
     &:hover {
       transform: scale(1.2);
-      margin-left: 15px;
       display: inline-block;
       border-bottom: 2px solid $color-green;
     }
@@ -148,6 +147,12 @@ a {
 
 .post-tags {
   display: flex;
+}
+
+.tags {
+  li {
+    display: inline-block;
+  }
 }
 
 /* Media */
