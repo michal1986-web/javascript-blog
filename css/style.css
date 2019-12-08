@@ -39,16 +39,19 @@ a {
 
 /* Layout */
 .wrapper {
+  display: -ms-flexbox;
   display: flex;
   margin-left: 10px;
 }
 
 .sidebar {
-  flex: 1 0 0;
+  -ms-flex: 1 0 0px;
+      flex: 1 0 0;
 }
 
 .posts {
-  flex: 2 0 0;
+  -ms-flex: 2 0 0px;
+      flex: 2 0 0;
 }
 
 .sidebar, .posts {
@@ -125,6 +128,7 @@ a {
 }
 
 .post-tags {
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -139,7 +143,8 @@ a {
     line-height: 1.3;
   }
   .wrapper {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
   .sidebar, .posts {
     padding: 20px;
@@ -157,7 +162,8 @@ a {
     line-height: 1.7;
   }
   .wrapper {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
   .posts, .sidebar {
     padding: 20px;
@@ -183,5 +189,4 @@ a {
     border-bottom: 2px solid #177737;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

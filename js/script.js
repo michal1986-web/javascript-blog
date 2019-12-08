@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 'use strict';
 
 /* Function Click Handler */
@@ -175,7 +176,7 @@ function tagClickHandler(event){
 }
 
 function addClickListenersToTags(){
-  const links = document.querySelectorAll('.post-tags a');
+  const links = document.querySelectorAll('.tags a, .post-tags a');
 
   for(let link of links){
 
@@ -195,25 +196,25 @@ function generateAuthors(){
 
     /* find tags wrapper */
     const titleList = article.querySelector(optArticleAuthorSelector);
-    //titleList.innerHTML = '';
+    titleList.innerHTML = '';
 
     /* make html variable with empty string */
     let html = '';
 
     /* get tags from data-tags attribute */
     const authorName = article.getAttribute('data-author');
-    //console.log(authorName);
+    console.log(authorName);
 
     /* generate HTML of the link */
     const linkHTML = '<a href="#author-' + authorName + '">' + authorName + '</a>';
-    //console.log(linkHTML);
-
+        
+    /* add generated code to html variable */
+    titleList.insertAdjacentHTML('beforeend', linkHTML);
     document.querySelector('.list.authors').innerHTML += 
     '<li><a href="#author-' + authorName + '"><span>' + authorName + '</span></a></li>';
-    /* add generated code to html variable */
-    titleList.insertAdjacentHTML('beforebegin', linkHTML);
+        
     html = html + linkHTML;
-
+    
     titleList.innerHTML = html;
   }
 }
