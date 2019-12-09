@@ -1,3 +1,10 @@
+/* eslint-disable no-undef */
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+};
+
 'use strict';
 
 const opt = {
@@ -15,7 +22,6 @@ const opt = {
 function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
-
   const activeLinks = document.querySelectorAll('.titles a.active');
 
   for(let activeLink of activeLinks){
@@ -28,10 +34,8 @@ function titleClickHandler(event){
   for(let activeArticle of activeArticles){
     activeArticle.classList.remove('active');
   }
-  const articleSelector = clickedElement.getAttribute('href');
-    
+  const articleSelector = clickedElement.getAttribute('href');  
   const targetArticle = document.querySelector(articleSelector);
-
   targetArticle.classList.add('active');
 }
 
@@ -40,17 +44,17 @@ function generateTitleLinks(customSelector = ''){
 
   const titleList = document.querySelector(opt.TitleListSelector);
   titleList.innerHTML = '';
-
   const articles = document.querySelectorAll(opt.ArticleSelector + customSelector);
 
   let html = '';
 
   for(let article of articles) {  
+
     const articleId = article.getAttribute('id');
-
     const articleTitle = article.querySelector(opt.TitleSelector).innerHTML;
-
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    // Zamiana1 const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
 
     titleList.insertAdjacentHTML('beforeend', linkHTML);
 
@@ -86,11 +90,8 @@ function calculateTagsParams(tags){
 /* Function calculateTagClass */
 function calculateTagClass(count, params){
   const normalizedCount = count - params.min;
-
   const normalizedMax = params.max - params.min;
-
   const percentage = normalizedCount / normalizedMax;
-
   const classNumber = Math.floor( percentage * (opt.CloudClassCount - 1) + 1 );
   return opt.CloudClassPrefix + classNumber;
 }
@@ -99,7 +100,6 @@ function calculateTagClass(count, params){
 function generateTags(){
 
   let allTags = {};
-
   const articles = document.querySelectorAll(opt.ArticleSelector);
 
   for(let article of articles) {
@@ -107,13 +107,14 @@ function generateTags(){
     titleList.innerHTML = '';
 
     let html = '';
-
     const articleTags = article.getAttribute('data-tags');
-
     const articleTagsArray = articleTags.split(' ');
 
     for(let tag of articleTagsArray) {
-      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+
+      // Zamiana2 const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const linkHTMLData = {id: tag, title: tag};
+      const linkHTML = templates.tagLink(linkHTMLData);
 
       titleList.insertAdjacentHTML('beforeend', linkHTML);
       html = html + linkHTML;
@@ -128,16 +129,12 @@ function generateTags(){
     titleList.innerHTML = html;
   }
   const tagList = document.querySelector('.tags');
-
   const tagsParams = calculateTagsParams(allTags);
-
   let allTagsHTML = '';
 
   for(let tag in allTags){
     allTagsHTML += '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + '</a></li>';
-    console.log('allTagsHTML:', allTagsHTML); 
   }
-
   tagList.innerHTML = allTagsHTML;
 }
 generateTags();
@@ -148,9 +145,7 @@ function tagClickHandler(event){
   const clickedElement = this;
 
   const href = clickedElement.getAttribute('href');
-
   const tag = href.replace('#tag-', '');
-
   const activeLinks = document.querySelectorAll('a.active[href^="#tag-"]');
 
   for(let activeLink of activeLinks){
@@ -178,7 +173,6 @@ addClickListenersToTags();
 function generateAuthors(){
 
   const articles = document.querySelectorAll(opt.ArticleSelector);
-
   let allAuthors = {};
 
   for(let article of articles) {
@@ -186,10 +180,10 @@ function generateAuthors(){
     titleList.innerHTML = '';
 
     let html = '';
-
     const authorName = article.getAttribute('data-author');
-
-    const linkHTML = '<a href="#author-' + authorName + '">' + authorName + '</a>';
+    // Zamiana3 const linkHTML = '<a href="#author-' + authorName + '">' + authorName + '</a>';
+    const linkHTMLData = {id: authorName, title: authorName};
+    const linkHTML = templates.authorLink(linkHTMLData);
         
     titleList.insertAdjacentHTML('beforeend', linkHTML);
         
@@ -199,9 +193,7 @@ function generateAuthors(){
     } else {
       allAuthors[authorName]++;
     }
-
-    html = html + linkHTML;
-    
+    html = html + linkHTML; 
     titleList.innerHTML = html;
   }
   for(let author in allAuthors){
@@ -217,9 +209,7 @@ function authorClickHandler(event){
   const clickedElement = this;
 
   const href = clickedElement.getAttribute('href');
-
   const author = href.replace('#author-', '');
-
   const activeLinks = document.querySelectorAll('a.active[href^="#author-"]');
 
   for(let activeLink of activeLinks){
