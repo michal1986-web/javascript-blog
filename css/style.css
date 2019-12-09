@@ -136,6 +136,22 @@ a {
   display: inline-block;
 }
 
+/* Tags */
+.tag-size-1 {
+  font-size: 20px;
+  color: brown;
+}
+
+.tag-size-3 {
+  font-size: 28px;
+  color: blue;
+}
+
+.tag-size-5 {
+  font-size: 36px;
+  color: red;
+}
+
 /* Media */
 @media (max-width: 767px) {
   body {
