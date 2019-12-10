@@ -185,7 +185,7 @@ addClickListenersToTags();
 function generateAuthors(){
 
   const articles = document.querySelectorAll(opt.ArticleSelector);
-  /////Handlebars5 let allAuthors = {};
+  let allAuthors = {};
   const allAuthorsData = {tags: []};
 
   for(let article of articles) {
@@ -195,7 +195,6 @@ function generateAuthors(){
     let html = '';
     
     const authorName = article.getAttribute('data-author');
-    //Handlebars3 const linkHTML = '<a href="#author-' + authorName + '">' + authorName + '</a>';
     const linkHTMLData = {id: authorName, title: authorName};
     const linkHTML = templates.authorLink(linkHTMLData);
         
@@ -208,19 +207,20 @@ function generateAuthors(){
       allAuthors[authorName]++;
     }
     html = html + linkHTML; 
-    /////Handlebars5 titleList.innerHTML = html;
+    titleList.innerHTML = html;
     titleList.innerHTML = templates.authorCloudLink(allAuthorsData);
   }
   for(let author in allAuthors){  
-    /////Handlebars5 document.querySelector('.list.authors').innerHTML += 
-    /////Handlebars5 '<li><a href="#author-' + author + '"><span>' + author + '(' + allAuthors[author] + ')' + '</span>  </a></li>';
-    allAuthorsData.allAuthors.push({
-      author: authorName,
+    document.querySelector('.list.authors').innerHTML += 
+    '<li><a href="#author-' + author + '"><span>' + author + '(' + allAuthors[author] + ')' + '</span>  </a></li>';
+    console.log(author);
+    allAuthorsData.tags.push({
+      author: author,
       count: allAuthors[author],
-      className: hasOwnProperty(allAuthors[author])
+      className: allAuthors[author]
     });
   }
-  //console.log(allAuthorsData);
+  console.log(allAuthorsData);
 }
 generateAuthors();
 
