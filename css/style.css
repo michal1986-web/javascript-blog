@@ -24,6 +24,9 @@ body {
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-weight: 600;
+  letter-spacing: 5px;
+  color: #444;
+  text-align: center;
 }
 
 .section-title span {
@@ -35,6 +38,7 @@ body {
 a {
   text-decoration: none;
   color: #444;
+  transition: all 0.6s;
 }
 
 /* Layout */
@@ -52,25 +56,27 @@ a {
 .posts {
   -ms-flex: 2 0 0px;
       flex: 2 0 0;
+  min-height: 650px;
 }
 
 .sidebar, .posts {
-  background: #fff;
-  margin-right: 10px;
+  background: #dfdfdf;
+  margin-right: 15px;
   padding: 40px;
   border-radius: 10px;
   position: relative;
-  min-height: 700px;
+  box-shadow: 2px 2px 3px #dfdfdf;
+  margin-bottom: 50px;
 }
 
 /* Logo */
 .logo {
   font-family: "Sacramento", cursive;
   font-weight: 400;
-  font-size: 104px;
+  font-size: 96px;
   line-height: 1;
   text-align: center;
-  color: #177737;
+  color: #1b9cfc;
 }
 
 /* Lists */
@@ -81,27 +87,23 @@ a {
 }
 
 .list li {
-  padding-left: 5px;
+  padding: 0 5px;
+  letter-spacing: 1px;
 }
 
 .list li:hover {
   transform: scale(1.2);
   display: inline-block;
-  border-bottom: 2px solid #177737;
 }
 
 .list .active {
   font-weight: bold;
-  margin-left: 20px;
+  margin-left: 50px;
+  transition: all 0.6s;
 }
 
 .list-horizontal li {
   display: inline-block;
-}
-
-/* Authors */
-.authors li {
-  margin-bottom: 12px;
 }
 
 /* Post */
@@ -120,7 +122,17 @@ a {
 .post.active {
   opacity: 1;
   z-index: 1;
-  transition: all .8s;
+  transition: all .9s;
+}
+
+.post-title {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: #444;
+  text-align: center;
 }
 
 .post-author {
@@ -132,77 +144,102 @@ a {
   display: flex;
 }
 
+/* Tags */
+.tags {
+  padding: 2px;
+  text-align: right;
+}
+
 .tags li {
   display: inline-block;
 }
 
-/* Tags */
 .tag-size-1 {
-  font-size: 20px;
-  color: brown;
+  font-size: 22px;
+  color: #853a85;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px black;
 }
 
 .tag-size-3 {
   font-size: 28px;
-  color: blue;
+  color: #2cc960;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px black;
 }
 
 .tag-size-5 {
-  font-size: 36px;
-  color: red;
+  font-size: 34px;
+  color: #ff7675;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px black;
+  text-align: right;
+}
+
+/* Authors */
+.authors {
+  text-align: right;
+}
+
+.authors li {
+  margin-bottom: 12px;
 }
 
 /* Media */
 @media (max-width: 767px) {
   body {
     font-size: 17px;
-    line-height: 1.3;
+    line-height: 1.5;
   }
   .wrapper {
     -ms-flex-direction: column;
         flex-direction: column;
   }
   .sidebar, .posts {
-    padding: 20px;
-    min-height: 900px;
-    margin-top: 20px;
+    padding: 10px;
+    margin-top: 10px;
   }
-  .sidebar {
-    min-height: 450px;
+  .posts {
+    text-align: justify;
+    min-height: 800px;
+  }
+  .tags, .authors {
+    text-align: center;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   body {
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.5;
   }
   .wrapper {
     -ms-flex-direction: column;
         flex-direction: column;
   }
-  .posts, .sidebar {
-    padding: 20px;
-    min-height: 500px;
-    margin-top: 20px;
+  .sidebar, .posts {
+    padding: 10px;
+    margin-top: 10px;
   }
-  .sidebar {
-    min-height: 300px;
-  }
-  .sidebar:first-child {
-    min-height: 175px;
+  .posts {
+    text-align: justify;
+    min-height: 450px;
   }
   .list li {
     display: inline-block;
-    margin-right: 50px;
   }
-  .list li:hover {
-    border: none;
-  }
-  .list li .active {
+  .list .active {
     font-weight: bold;
+    background: #1b9cfc;
     margin-left: 0;
-    border-bottom: 2px solid #177737;
+    padding: 1px 2px;
+    border-radius: 10px;
+  }
+  .tags, .authors {
+    text-align: center;
   }
 }
 /*# sourceMappingURL=style.css.map */
